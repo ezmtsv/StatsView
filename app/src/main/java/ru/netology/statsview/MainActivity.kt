@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
             10F,
             8F,
             15F,
-            25F,
+            35F,
         )
     }
 }

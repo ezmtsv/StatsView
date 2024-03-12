@@ -11,7 +11,10 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import ru.netology.statsview.R
 import ru.netology.statsview.utils.AndroidUtils
+import kotlin.math.PI
+import kotlin.math.cos
 import kotlin.math.min
+import kotlin.math.sin
 
 class StatsView @JvmOverloads constructor(
     context: Context,
@@ -23,6 +26,9 @@ class StatsView @JvmOverloads constructor(
     private var textSize = AndroidUtils.dp(context, 20).toFloat()
     private var lineWide = AndroidUtils.dp(context, 5)
     private var colors = emptyList<Int>()
+    private var radius = 0F
+    private var center = PointF()
+    private var oval = RectF()
 
     init {
         context.withStyledAttributes(
@@ -49,9 +55,7 @@ class StatsView @JvmOverloads constructor(
             field = newValue
             invalidate()
         }
-    private var radius = 0F
-    private var center = PointF()
-    private var oval = RectF()
+
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         .apply {
             strokeWidth = lineWide.toFloat()
@@ -88,18 +92,31 @@ class StatsView @JvmOverloads constructor(
 
         var startEngel = -90F
         var countData = data.count()
+        var colorCircle: Int = 0
+
         data.forEachIndexed() { index, datum ->
             val angel = datum * 360
             if (index == countData - 1) {
+                paint.color = 0xFFffffff.toInt()
+                val endAngel = (-360 + angel) * PI / 180
+                val endX = center.x - radius * sin(endAngel).toFloat()
+                val endY = center.y - radius * cos(endAngel).toFloat()
+                canvas.drawPoint(endX, endY, paint)
+
                 paint.color = 0x55999999.toInt()
 
             } else {
                 paint.color = colors.getOrElse(index) { randomColor() }
+                if (index == 0) {
+                    colorCircle = paint.color
+                }
             }
+
             canvas.drawArc(oval, startEngel, angel, false, paint)
             startEngel += angel
         }
-
+        paint.color = colorCircle
+        canvas.drawPoint(center.x, center.y - radius, paint)
         canvas.drawText(
             "%.2f%%".format((data.sum() - data.get(countData - 1)) * 100),
             center.x,

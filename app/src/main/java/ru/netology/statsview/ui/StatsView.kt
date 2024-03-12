@@ -51,7 +51,6 @@ class StatsView @JvmOverloads constructor(
             val newValue = value.map {
                 it / value.sum()
             }
-//            println("value $newValue")
             field = newValue
             invalidate()
         }

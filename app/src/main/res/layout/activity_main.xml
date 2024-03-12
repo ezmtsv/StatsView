@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/statsView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ru.netology.statsview.ui.StatsView
+        android:id="@+id/statsView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:id="@+id/statsView"
-        app:textSize="45sp"
-        app:lineWidth="26dp"
         app:colors1="#051279"
         app:colors2="#939105"
         app:colors3="#18aa15"
@@ -19,6 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineWidth="26dp"
+        app:textSize="45sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

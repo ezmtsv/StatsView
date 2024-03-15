@@ -10,11 +10,11 @@
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/statsView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="@id/statsView"
+        app:layout_constraintEnd_toEndOf="@id/statsView"
+        app:layout_constraintStart_toStartOf="@id/statsView"
+        app:layout_constraintTop_toTopOf="@id/statsView" />
 
     <ru.netology.statsview.ui.StatsView
         android:id="@+id/statsView"
@@ -24,6 +24,7 @@
         app:colors2="#939105"
         app:colors3="#18aa15"
         app:colors4="#aa2012"
+        app:modeAnimation="one"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
